@@ -528,6 +528,15 @@ footer {
         line-height: 1.3;
     }
 
+    .glitch::before,
+    .glitch::after {
+        display: none;
+    }
+
+    .glitch {
+        animation: none;
+    }
+
     .hero p {
         font-size: 0.9rem;
     }

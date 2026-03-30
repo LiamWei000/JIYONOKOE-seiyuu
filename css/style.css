@@ -57,6 +57,7 @@ body::before {
     z-index: 1000;
     background: rgba(0, 0, 0, 0.9);
     border-bottom: 2px solid var(--primary);
+    padding: 0 15px;
 }
 
 .navbar .container {
@@ -64,6 +65,8 @@ body::before {
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
+    /* width: 100%;
+    max-width: 1100px; */
 }
 
 .logo {
@@ -151,6 +154,16 @@ body::before {
     text-align: center;
     z-index: 2;
     padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    /* INI YANG FIX TABRAKAN */
+}
+
+.hero-content h1 {
+    margin-bottom: 10px;
 }
 
 /* =========================
@@ -165,6 +178,8 @@ body::before {
         0 0 5px red,
         0 0 10px red,
         0 0 20px rgba(255, 0, 0, 0.6);
+
+    line-height: 1.3;
 }
 
 .glitch::before,
@@ -252,6 +267,7 @@ body::before {
     padding: 80px 20px;
     text-align: center;
     background: var(--gray);
+    border-radius: var(--radius);
 }
 
 .about h2 {
@@ -265,7 +281,12 @@ body::before {
 .join {
     padding: 80px 20px;
     text-align: center;
-    background: linear-gradient(var(--dark), var(--primary));
+    /* background: linear-gradient(var(--dark), var(--primary)); */
+    /* background: linear-gradient(135deg, var(--dark), var(--primary));
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden; */
+    background: linear-gradient(#000, #220000);
 }
 
 .join-btn {
@@ -285,6 +306,151 @@ body::before {
     left: 20px;
     font-size: 2rem;
     opacity: 0.1;
+}
+
+/* =========================
+   ADMIN
+========================= */
+.admin {
+    padding: 60px 20px;
+    background: #0a0a0a;
+}
+
+.admin ul {
+    list-style: none;
+    margin-top: 15px;
+    padding: 0;
+}
+
+.admin h2,
+.rules h2,
+.events h2,
+.contact h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.admin ul,
+.rules ul,
+.social-list {
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto 0;
+}
+
+.admin ul li,
+.rules ul li,
+.social-list li {
+    background: #111;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-left: 3px solid red;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.rules ul li {
+    position: relative;
+    padding-left: 28px;
+}
+
+.rules ul li::before {
+    content: "♦";
+    position: absolute;
+    left: 10px;
+    color: red;
+}
+
+.admin ul li:hover,
+.rules ul li:hover,
+.social-list li:hover {
+    background: #1a1a1a;
+    transform: translateX(5px);
+}
+
+/* =========================
+   RULES
+========================= */
+.rules {
+    padding: 60px 20px;
+    background: #0a0a0a;
+    text-align: center;
+}
+
+.rules ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+/* =========================
+   EVENTS
+========================= */
+.events {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.event-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.event-card {
+    background: #111;
+    padding: 20px;
+    border: 1px solid red;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* glow hover */
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px red;
+}
+
+.event-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, rgba(255, 0, 0, 0.2));
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.event-card:hover::before {
+    opacity: 1;
+}
+
+/* =========================
+   CONTACT
+========================= */
+.contact {
+    padding: 80px 20px;
+    text-align: center;
+    /* background: linear-gradient(#000, #220000); */
+    /* background: linear-gradient(var(--dark), var(--primary));
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden; */
+}
+
+.social-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.social-list li {
+    margin: 10px 0;
+}
+
+.note {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    opacity: 0.7;
 }
 
 /* =========================
@@ -308,6 +474,12 @@ footer {
     border: none;
     color: var(--light);
     cursor: pointer;
+    margin-left: auto;
+    transition: 0.3s;
+}
+
+.menu-toggle:active {
+    transform: scale(0.9);
 }
 
 /* =========================
@@ -318,9 +490,15 @@ footer {
         display: block;
     }
 
+    .navbar .container {
+        width: 100%;
+        padding: 0 15px;
+    }
+
     .nav-links {
         position: absolute;
-        top: 60px;
+        top: 100%;
+        left: 0;
         right: 0;
         background: var(--dark);
         width: 100%;
@@ -328,6 +506,7 @@ footer {
         align-items: center;
         display: none;
         padding: 20px 0;
+        z-index: 1000;
     }
 
     .nav-links.active {
@@ -335,6 +514,21 @@ footer {
     }
 
     .hero {
-        height: 90vh;
+        height: auto;
+        /* jangan paksa 100vh */
+        padding: 80px 0;
+    }
+
+    .hero-content {
+        gap: 16px;
+    }
+
+    .glitch {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
     }
 }
